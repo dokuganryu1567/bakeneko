@@ -62,8 +62,22 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, templates/Pages/home.php)...
      */
-    $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    //$builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
+    $builder->connect('/admin/',
+        ['controller' => 'Admins', 'action' => 'index']
+        );
+    $builder->connect('/edit/:id',
+        ['controller' => 'Admins', 'action' => 'edit'],
+        ['id' => '[0-9]+']
+    );
+    $builder->connect('/edit-confirm/',
+        ['controller' => 'Admins', 'action' => 'editConfirm']
+    );
+    $builder->connect('/delete/:id',
+        ['controller' => 'Admins', 'action' => 'delete'],
+        ['id' => '[0-9]+']
+    );
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
